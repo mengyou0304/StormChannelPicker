@@ -5,6 +5,7 @@
 
 package com.chinacache.robin.grouping.statistic;
 
+
 import com.chinacache.robin.util.FileUtility;
 
 import java.util.ArrayList;
@@ -16,18 +17,18 @@ import java.util.Set;
  * Created by robinmac on 15-9-26.
  */
 public class SatasticGroupingManager {
-	HashMap<String,ChannelConfig> channelMap=new HashMap<String,ChannelConfig>();
+	public HashMap<String,ChannelConfig> channelMap=new HashMap<String,ChannelConfig>();
 	int indexer=0;
 
 	public SatasticGroupingManager(String url,List<Integer> boltIds){
-		String s=FileUtility.readFromFile(url);
+		String s= FileUtility.readFromFile(url);
 		String[] lines=s.split("\n");
 		for(String line:lines){
 			String[] ss=line.split(":");
-			String [] tt=ss[0].split("-");
+			String[] tt=ss[0].split("-");
 			String channelid=tt[1];
 			String userid=tt[0];
-			Integer  boldNum=Integer.parseInt(ss[1]);
+			Integer boldNum= Integer.parseInt(ss[1]);
 			try {
 				ArrayList<Integer> boltList=getAvalibleBoltList(boltIds,boldNum);
 				if(boltList==null||boltList.size()==0)

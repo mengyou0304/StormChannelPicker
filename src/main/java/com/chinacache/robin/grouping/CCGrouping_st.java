@@ -11,10 +11,12 @@ import backtype.storm.task.WorkerTopologyContext;
 import com.chinacache.robin.grouping.statistic.SatasticGroupingManager;
 import com.chinacache.robin.util.basic.ExceptionUtil;
 import com.chinacache.robin.util.config.AllConfiguration;
+import com.chinacache.robin.util.config.ConfigFileManager;
 import com.chinacache.robin.util.config.Locator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -74,8 +76,14 @@ public class CCGrouping_st implements CustomStreamGrouping {
 		logger.info("AllTasks :" + allTaskLists);
 		this.context=context;
 		this.stream=stream;
-		String url=Locator.getInstance().getNLABaseLocation()+ AllConfiguration.STORM_CONF_SATASTIC_FILE_NAME;
+		try {
+			ConfigFileManager.downloadConf();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String url= Locator.getInstance().getNLABaseLocation()+ AllConfiguration.STORM_CONF_SATASTIC_FILE_NAME;
 		stManager=new SatasticGroupingManager(url,allTaskLists);
+		logger.info(stManager.channelMap.toString());
 	}
 
 
@@ -106,15 +114,17 @@ public class CCGrouping_st implements CustomStreamGrouping {
 				 return new ArrayList<Integer>();
 			}
 			//Fault Type3: no taskid
-			String userid=String.valueOf(values.get(1));
-			String channelid=String.valueOf(values.get(0));
-			String key=channelid+"_"+userid;
+			String channelid= String.valueOf(values.get(0));
+			String userid= String.valueOf(values.get(1));
+			String key=userid+"_"+channelid;
+			fault4++;
 			List<Integer> boltlist=stManager.getBolts(key);
 			if(boltlist==null||boltlist.size()==0)
 				return new ArrayList<Integer>();
 			Integer boltid=boltlist.get(r.nextInt(boltlist.size()));
 			ArrayList<Integer> reslist=new ArrayList<Integer>();
 			reslist.add(boltid);
+			fault3++;
 			return reslist;
 		} catch (Exception e) {
 			exceptionNum++;

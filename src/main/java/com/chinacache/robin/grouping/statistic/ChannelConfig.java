@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * Created by robinmac on 15-9-26.
  */
 public class ChannelConfig {
-	private  Integer boltNum;
-	private  String userID;
-	private  String channeID;
+	private Integer boltNum;
+	private String userID;
+	private String channeID;
 
 	ArrayList<Integer> boltIDs;
 
