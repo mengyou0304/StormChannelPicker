@@ -52,7 +52,7 @@ public class MsgTimeChecker {
 
 	public void checkTime(String log) {
 		if (allMessageNum % 50000 == 0) {
-//			logger.info("Message num as: " + allMessageNum / 10000 + "W");
+			logger.info("Message num as: " + allMessageNum / 10000 + "W");
 			logger.info(getStatusStirng());
 			if (allMessageNum % 500000 == 0)
 				checkDeadLine();

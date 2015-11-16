@@ -92,61 +92,61 @@
             <!--</exclusions>-->
         <!--</dependency>-->
 
-        <!--<dependency>-->
-            <!--<groupId>org.chinacache.kafka</groupId>-->
-            <!--<artifactId>kafka_2.11</artifactId>-->
-            <!--<version> 0.8.2.0</version>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>jmxri</artifactId>-->
-                    <!--<groupId>com.sun.jmx</groupId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>jmxtools</artifactId>-->
-                    <!--<groupId>com.sun.jdmk</groupId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>jms</artifactId>-->
-                    <!--<groupId>javax.jms</groupId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>junit</artifactId>-->
-                    <!--<groupId>junit</groupId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
-        <!--</dependency>-->
-
         <dependency>
-            <groupId>com.chinacache</groupId>
-            <artifactId>kafka_2.9.2</artifactId>
-            <version>0.8.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.4</version>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <version> 0.8.2.0</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
+                    <artifactId>jmxri</artifactId>
+                    <groupId>com.sun.jmx</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jmxtools</artifactId>
+                    <groupId>com.sun.jdmk</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jms</artifactId>
+                    <groupId>javax.jms</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>junit</artifactId>
+                    <groupId>junit</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.yammer.metrics</groupId>
-            <artifactId>metrics-core</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.jopt-simple</groupId>
-            <artifactId>jopt-simple</artifactId>
-            <version>3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.xerial.snappy</groupId>
-            <artifactId>snappy-java</artifactId>
-            <version>1.0.5</version>
-        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.chinacache</groupId>-->
+            <!--<artifactId>kafka_2.9.2</artifactId>-->
+            <!--<version>0.8.1.1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.101tec</groupId>-->
+            <!--<artifactId>zkclient</artifactId>-->
+            <!--<version>0.4</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>log4j</artifactId>-->
+                    <!--<groupId>log4j</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.yammer.metrics</groupId>-->
+            <!--<artifactId>metrics-core</artifactId>-->
+            <!--<version>2.2.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>net.sf.jopt-simple</groupId>-->
+            <!--<artifactId>jopt-simple</artifactId>-->
+            <!--<version>3.2</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.xerial.snappy</groupId>-->
+            <!--<artifactId>snappy-java</artifactId>-->
+            <!--<version>1.0.5</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>com.alibaba.jstorm</groupId>
@@ -190,13 +190,13 @@
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.9.2</version>
+            <version>2.11.2</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-compiler</artifactId>
-            <version>2.9.2</version>
+            <version>2.11.2</version>
             <scope>compile</scope>
         </dependency>
 

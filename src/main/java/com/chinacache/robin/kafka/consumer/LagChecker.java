@@ -37,59 +37,7 @@ public class LagChecker {
 	public LagChecker() {
 		m_replicaBrokers = new ArrayList<String>();
 	}
-	private static HashMap<String,String> hostMap=new HashMap<String,String>();
-	static{
-//        CCN-YZ-2-5A8: broker.id=8	CNC
-		hostMap.put("153.99.250.35","10.20.72.136");
-//        CCN-YZ-2-5AA: broker.id=9	CNC
-		hostMap.put("153.99.250.37","10.20.72.138");
-//        CCN-YZ-2-5AH: broker.id=0	CNC
-		hostMap.put("153.99.250.42","10.20.72.145");
-//        CCN-YZ-2-5AI: broker.id=1	CNC
-		hostMap.put("153.99.250.43","10.20.72.146");
-//        CCN-YZ-2-5AJ: broker.id=2	CNC
-		hostMap.put("153.99.250.44","10.20.72.147");
-//        CCN-YZ-2-5AK: broker.id=3	CNC
-		hostMap.put("153.99.250.45","10.20.72.148");
-//        CCN-YZ-2-5AR: broker.id=4	CNC
-		hostMap.put("153.99.250.50","10.20.72.155");
-//        CCN-YZ-2-5AS: broker.id=5	CNC
-		hostMap.put("153.99.250.51","10.20.72.156");
-//        CCN-YZ-2-5AT: broker.id=6	CNC
-		hostMap.put("153.99.250.52","10.20.72.157");
-//        CCN-YZ-2-5AU: broker.id=7	CNC
-		hostMap.put("153.99.250.53","10.20.72.158");
-//        CCN-YZ-2-5A3: broker.id=0	CHN
-		hostMap.put("180.97.185.36","10.20.72.131");
-//        CCN-YZ-2-5A4: broker.id=1	CHN
-		hostMap.put("180.97.185.37","10.20.72.132");
-//        CCN-YZ-2-5A5: broker.id=2	CHN
-		hostMap.put("180.97.185.38","10.20.72.133");
-//        CCN-YZ-2-5A6: broker.id=3	CHN
-		hostMap.put("180.97.185.39","10.20.72.134");
-//        CCN-YZ-2-5AB: broker.id=4	CHN
-		hostMap.put("180.97.185.50","10.20.72.139");
-//        CCN-YZ-2-5AC: broker.id=5	CHN
-		hostMap.put("180.97.185.51","10.20.72.140");
-//        CCN-YZ-2-5AD: broker.id=6	CHN
-		hostMap.put("180.97.185.52","10.20.72.141");
-//        CCN-YZ-2-5AE: broker.id=7	CHN
-		hostMap.put("180.97.185.53","10.20.72.142");
-//        CCN-YZ-2-5AF: broker.id=8	CHN
-		hostMap.put("180.97.185.54","10.20.72.143");
-//        CCN-YZ-2-5AG: broker.id=9	CHN
-		hostMap.put("180.97.185.55","10.20.72.144");
-//        CCN-YZ-2-5AL: broker.id=10	CHN
-		hostMap.put("180.97.185.66","10.20.72.149");
-//        CCN-YZ-2-5AM: broker.id=11	CHN
-		hostMap.put("180.97.185.67","10.20.72.150");
-//        CCN-YZ-2-5AN: broker.id=12	CHN
-		hostMap.put("180.97.185.68","10.20.72.151");
-//        CCN-YZ-2-5AO: broker.id=13	CHN
-		hostMap.put("180.97.185.69","10.20.72.152");
-//        CCN-YZ-2-5AQ: broker.id=14	CHN
-		hostMap.put("180.97.185.71","10.20.72.154");
-	}
+
 
 	public void run(long a_maxReads, String a_topic, int a_partition, List<String> a_seedBrokers, int a_port, String part) throws Exception {
 		checker=new MsgTimeChecker(a_topic,a_partition,part);
@@ -106,8 +54,6 @@ public class LagChecker {
 		}
 		String leadBroker = metadata.leader().host();
 		System.out.println("Origin leader : "+leadBroker);
-		if(hostMap.containsKey(leadBroker))
-			leadBroker=hostMap.get(leadBroker);
 		System.out.println("Reflected leader : "+leadBroker);
 		String clientName = "Client_" + a_topic + "_" + a_partition;
 		//Step.2: Build the simple consumer based on leader that finded
@@ -290,7 +236,9 @@ public class LagChecker {
 		int ed=32;
 		String part="CNC";
 		final List<String> seeds =new ArrayList<String>();
+		seeds.add("180.97.185.52");
 		if(args.length>3){
+			seeds.clear();
 			st=Integer.parseInt(args[0]);
 			ed=Integer.parseInt(args[1]);
 			part=args[2];
@@ -311,6 +259,7 @@ public class LagChecker {
 						int port = 9092;
 						LagChecker checker = new LagChecker();
 						try {
+							System.out.println("check: "+topic+"\t"+partition+"\t"+seeds+"\t"+port+"\t"+finalPart);
 							checker.run(maxReads, topic, partition, seeds, port, finalPart);
 						} catch (Exception e) {
 							e.printStackTrace();
